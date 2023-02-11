@@ -7,6 +7,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   linkWithPopup,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -83,8 +85,12 @@ export const signInUserWithEmailAndPassword = async (email, password) => {
 export const mergeFacebookUser = async () => {
   try {
     const user = auth.currentUser;
-    return  await linkWithPopup(user, facebookProvider);
+    return await linkWithPopup(user, facebookProvider);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
+
+export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);

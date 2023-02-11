@@ -5,10 +5,10 @@ import Button from "../button/button-component";
 import {
   signInWithGooglePopup,
   signInWithFacebookPopup,
-  createUserDocumentFromAuth,
   signInUserWithEmailAndPassword,
   mergeFacebookUser,
 } from "../../utils/firebase/firebase.utils";
+
 import "./sign-in-form-style.scss";
 
 const defaultFormFields = {
@@ -21,17 +21,15 @@ const SignInForm = () => {
   const { email, password } = formFields;
 
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   const logFacebookUser = async () => {
     try {
-      const { user } = await signInWithFacebookPopup();
-      const userDocRef = await createUserDocumentFromAuth(user);
+      await signInWithFacebookPopup();
     } catch (error) {
       if (error.code === "auth/account-exists-with-different-credential") {
-        const response = await mergeFacebookUser();
+        await mergeFacebookUser();
       } else {
         console.log(error);
       }
@@ -44,9 +42,8 @@ const SignInForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     try {
-      const response = await signInUserWithEmailAndPassword(email, password);
+      await signInUserWithEmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
       switch (error.code) {
