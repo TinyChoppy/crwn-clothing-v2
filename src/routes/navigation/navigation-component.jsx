@@ -6,7 +6,7 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import { ReactComponent as HeartLogo } from "../../assets/heart.svg";
 import CartIcon from "../../components/cart-icon/cart-icon-component";
-import CartDropdown from "../../components/cart-dropdown/card-dropdown-component";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown-component";
 import "./navigation-style.scss";
 
 const Navigation = () => {
