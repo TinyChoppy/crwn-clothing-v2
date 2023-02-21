@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import FormInput from "../form-input/form-input-component";
-import Button from "../button/button-component";
+import Button, {BUTTON_TYPE_CLASSES} from "../button/button-component";
 import {
   signInWithGooglePopup,
   signInWithFacebookPopup,
@@ -9,7 +9,7 @@ import {
   mergeFacebookUser,
 } from "../../utils/firebase/firebase.utils";
 
-import "./sign-in-form-style.scss";
+import {SignInContainer, ButtonsContainer} from "./sign-in-form-style";
 
 const defaultFormFields = {
   email: "",
@@ -65,7 +65,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-in-container">
+    <SignInContainer>
       <h2>Already have an account ?</h2>
       <span>Sign in with your email and password</span>
       <form>
@@ -85,21 +85,21 @@ const SignInForm = () => {
           name="password"
           value={password}
         />
-        <div className="buttons-container">
+        <ButtonsContainer>
           <Button type="submit" onClick={handleSubmit}>
             Sign In
           </Button>
 
-          <Button type="button" onClick={logGoogleUser} buttonType="google">
+          <Button type="button" onClick={logGoogleUser} buttonType={BUTTON_TYPE_CLASSES.google}>
             Sign In with Google
           </Button>
 
-          <Button type="button" onClick={logFacebookUser} buttonType="facebook">
+          <Button type="button" onClick={logFacebookUser} buttonType={BUTTON_TYPE_CLASSES.facebook}>
             Sign In with Facebook
           </Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };
 
