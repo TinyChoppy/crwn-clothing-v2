@@ -1,31 +1,35 @@
-import { Outlet, Link } from "react-router-dom";
-import { Fragment, useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
-import { CartContext } from "../../contexts/cart.context";
+import { Outlet } from "react-router-dom";
+import { Fragment } from "react";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
-import { ReactComponent as HeartLogo } from "../../assets/heart.svg";
 import CartIcon from "../../components/cart-icon/cart-icon-component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown-component";
-import {NavigationContainer, NavLinks, NavLink, LogoContainer} from "./navigation-style";
+import {NavigationContainer, NavLinks, NavLink, LogoContainer, HeartLogo} from "./navigation-style";
+import DarkMode from "../../components/dark-theme/dark-theme-component";
+// import SearchBar from "../../components/search-bar/search-bar-component";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selector";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
-  const { isCartOpen } = useContext(CartContext);
-  
+
+  const currentUser = useSelector(selectCurrentUser)
+  const isCartOpen = useSelector(selectIsCartOpen)
 
   return (
     <Fragment>
       <NavigationContainer>
         <LogoContainer to={"/"}>
-          <HeartLogo className="logo" />
+          <HeartLogo />
         </LogoContainer>
+        {/* < SearchBar /> */}
         <NavLinks>
+          <DarkMode />
           <NavLink to={"/shop"}>
             SHOP
           </NavLink>
           {currentUser ? (
-            <NavLink as="span" onClick={signOutUser}>
+            <NavLink as='span' onClick={signOutUser}>
               SIGN OUT
             </NavLink>
           ) : (

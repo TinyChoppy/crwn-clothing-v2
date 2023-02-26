@@ -16,6 +16,8 @@ export const ImageContainer = styled.div`
 export const Image = styled.img`
   width: 100%;
   height: 100%;
+  min-height: 160px;
+  max-height: 186px;
   border-radius: 5px;
 `;
 export const Name = styled.div`
@@ -36,6 +38,6 @@ export const Value = styled.span`
   margin: 0 10px;
 `;
 export const RemoveButton = styled.span`
-  margin: 0 10px;
+  margin: 0 auto;
   cursor: pointer;
 `;

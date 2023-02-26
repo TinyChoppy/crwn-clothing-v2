@@ -1,19 +1,22 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { ReactComponent as HeartSvg } from "../../assets/heart.svg";
 
 export const NavigationContainer = styled.div`
-  height: 70px;
+  height: 50px;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
+  margin: 0 0 10px;
   position: relative;
+  /* background-color: #4E31AA */
 `;
 
 export const LogoContainer = styled(Link)`
   height: 100%;
-  width: 70px;
-  padding: 10px;
+  width: 50px;
+  border-radius: 25px;
+  background-color: orange;
 `;
 
 export const NavLinks = styled.div`
@@ -26,4 +29,12 @@ export const NavLinks = styled.div`
 export const NavLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;
+  color: grey;
+`;
+
+export const HeartLogo = styled(HeartSvg)`
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+  fill: black;
 `;

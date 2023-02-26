@@ -9,15 +9,15 @@ import {
 export const CartDropdownContainer = styled.div`
   position: absolute;
   width: 250px;
-  height: 340px;
+  height: 330px;
   display: flex;
   flex-direction: column;
   padding: 20px;
   border: 1px solid black;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: white;
   top: 60px;
-  right: 7px;
+  right: 0;
   z-index: 5;
 
   ${BaseButton},
@@ -29,12 +29,13 @@ export const CartDropdownContainer = styled.div`
 `;
 
 export const EmptyMessage = styled.span`
-  font-size: 18px;
+  font-size: 20px;
   margin: 50px auto;
+  color: black;
 `;
 
 export const CartItems = styled.div`
-  height: 240px;
+  height: 230px;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;

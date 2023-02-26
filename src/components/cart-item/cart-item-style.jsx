@@ -20,5 +20,9 @@ export const ItemDetails = styled.div`
 `;
 export const CartItemName = styled.h2`
   font-size: 16px;
+  color: black;
 `;
 
+export const Price = styled.span`
+  color: black;
+`

@@ -1,10 +1,18 @@
 import styled from "styled-components";
 
+
+export const CardImage = styled.span`
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 10px;
+`
+
 export const ProductCardContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 350px;
   align-items: center;
   position: relative;
   overflow: hidden;
@@ -13,7 +21,7 @@ export const ProductCardContainer = styled.div`
     width: 100%;
     height: 320px;
     object-fit: cover;
-    margin-bottom: 10px;
+    border-radius: 10px;
   }
 
   button {
