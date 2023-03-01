@@ -1,15 +1,15 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import FormInput from "../form-input/form-input-component";
-import Button, {BUTTON_TYPE_CLASSES} from "../button/button-component";
-import {
-  signInWithGooglePopup,
-  signInWithFacebookPopup,
-  signInUserWithEmailAndPassword,
-  mergeFacebookUser,
-} from "../../utils/firebase/firebase.utils";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button-component";
 
-import {SignInContainer, ButtonsContainer} from "./sign-in-form-style";
+import { SignInContainer, ButtonsContainer } from "./sign-in-form-style";
+import {
+  googleSignInStart,
+  // facebookSignInStart,
+  emailSignInStart,
+} from "../../store/user/user.action";
 
 const defaultFormFields = {
   email: "",
@@ -19,22 +19,19 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const dispatch = useDispatch();
 
   const logGoogleUser = async () => {
-    await signInWithGooglePopup();
+    dispatch(googleSignInStart());
   };
 
-  const logFacebookUser = async () => {
-    try {
-      await signInWithFacebookPopup();
-    } catch (error) {
-      if (error.code === "auth/account-exists-with-different-credential") {
-        await mergeFacebookUser();
-      } else {
-        console.log(error);
-      }
-    }
-  };
+  // const logFacebookUser = async () => {
+  //   try {
+  //     dispatch(facebookSignInStart());
+  //   } catch (error) {
+  //    console.log(error);
+  //   }
+  // };
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -43,7 +40,7 @@ const SignInForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await signInUserWithEmailAndPassword(email, password);
+      dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch (error) {
       switch (error.code) {
@@ -90,13 +87,21 @@ const SignInForm = () => {
             Sign In
           </Button>
 
-          <Button type="button" onClick={logGoogleUser} buttonType={BUTTON_TYPE_CLASSES.google}>
+          <Button
+            type="button"
+            onClick={logGoogleUser}
+            buttonType={BUTTON_TYPE_CLASSES.google}
+          >
             Sign In with Google
           </Button>
 
-          <Button type="button" onClick={logFacebookUser} buttonType={BUTTON_TYPE_CLASSES.facebook}>
+          {/* <Button
+            type="button"
+            onClick={logFacebookUser}
+            buttonType={BUTTON_TYPE_CLASSES.facebook}
+          >
             Sign In with Facebook
-          </Button>
+          </Button> */}
         </ButtonsContainer>
       </form>
     </SignInContainer>
